@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste employees</title>
+    <link rel="stylesheet" type="text/css" href="/css/template.css">
+    <link rel="stylesheet" type="text/css" href="/css/picnic.min.css">
+</head>
+<body>
+<h1>Liste des employees</h1>
+<div class="list"></div>
+<ul>
+    <li th:each="employee : ${employees}">
+        <a th:href="@{/employee/{id}(id=${employee.id})}" th:text="${employee.id}"></a>
+        <span th:text="${employee.name}" th:attr="style='background:' + ${employee.fonction.getCodeCouleur()}"></span>
+    </li>
+</ul>
+
+<div>
+    <form th:action="@{/employee/addemployee}" th:object="${employee}" method="post">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" th:field="*{name}"  />
+        <br>
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" th:field="*{email}"  />
+        <br>
+
+        <label for="phone">Téléphone :</label>
+        <input type="tel" id="phone" name="phone" th:field="*{phone}"  />
+        <br>
+
+        <label for="address">Adresse :</label>
+        <input type="text" id="address" name="address" th:field="*{address}" />
+        <br>
+
+        <label for="fonction">Fonction :</label>
+        <select id="fonction" name="fonction" th:field="*{fonction}">
+            <option th:each="fonctionOpt : ${T(fr.devavance.employee.employee_core.core.enumeration.Fonction).values()}"
+                    th:value="${fonctionOpt}"
+                    th:text="${fonctionOpt}">
+            </option>
+        </select>
+        <br>
+
+        <button type="submit">Ajouter l'employé</button>
+    </form>
+
+</div>
+</body>
+</html>

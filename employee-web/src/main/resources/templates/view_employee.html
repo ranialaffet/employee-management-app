@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Fiche employee</title>
+</head>
+<body>
+<h1>Fiche employée</h1>
+<a th:href="@{/employee/home}">Home</a>
+<table>
+    <tr>
+        <td>Nom: </td>
+        <td th:text="${employee.name}">
+    </tr>
+    <tr>
+        <td>Adresse: </td>
+        <td th:text="${employee.address}">
+    </tr>
+    <tr>
+        <td>Courriel: </td>
+        <td th:text="${employee.email}">
+    </tr>
+    <tr>
+        <td>Télephone: </td>
+        <td th:text="${employee.phone}">
+    </tr>
+    <tr>
+        <td>Fonction: </td>
+        <td th:text="${employee.fonction}">
+    </tr>
+
+</table>
+</body>
+</html>
